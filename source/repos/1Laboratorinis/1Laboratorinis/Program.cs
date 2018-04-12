@@ -124,6 +124,7 @@ namespace _1Laboratorinis
             Console.WriteLine(" Speed test OP: ");
             Console.WriteLine("\n Selection sort ARRAY: \n");
             int[] length = { 400, 800, 1600, 3200, 6400, 12800, 25600 };
+            
             for (int i = 0; i < length.Length; i++)
             {
                 MyDataArray n = new MyDataArray(length[i]);
@@ -189,14 +190,14 @@ namespace _1Laboratorinis
             Console.WriteLine("\n Selection sort ARRAY: \n");
             int[] length = { 400, 800, 1600, 3200, 6400 };
             int[] length2 = { 400, 800, 1600, 3200, 6400, 12800 };
-            int[] length3 = { 100, 200, 400, 800 };
+            int[] length3 = { 100, 200, 400};
             string fileName;
             fileName = @"mydataaray.dat";
             string fileName2 = @"mydataaray2.dat";
             string filename3 = @"mydatalist.dat";
-            for (int i = 0; i < length.Length; i++)
+            for (int i = 0; i < length3.Length; i++)
             {
-                MyFileArray n = new MyFileArray(fileName, length2[i], seed);
+                MyFileArray n = new MyFileArray(fileName, length3[i], seed);
                 using (n.fs = new FileStream(fileName, FileMode.Open, FileAccess.ReadWrite))
                 {
                     Stopwatch t = new Stopwatch();
@@ -204,7 +205,7 @@ namespace _1Laboratorinis
                     n.SelectionSort();
                     t.Stop();
                     TimeSpan e = t.Elapsed;
-                    Console.WriteLine("Amount of data {0,5} --->>> Time elapsed: {1}", length[i], e.ToString());
+                    Console.WriteLine("Amount of data {0,5} --->>> Time elapsed: {1}", length3[i], e.ToString());
                 }
             }
             Console.WriteLine("------------------------------------------------------");
