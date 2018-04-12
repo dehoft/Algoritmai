@@ -201,6 +201,9 @@ namespace _1Laboratorinis
                     Console.WriteLine("Amount of data {0,5} --->>> Time elapsed: {1}", length2[i], e.ToString());
                 }
             }
+
+            Console.WriteLine("------------------------------------------------------");
+            Console.WriteLine("\n Slection sort LIST \n");
         }
     }
 }
