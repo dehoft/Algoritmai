@@ -18,8 +18,10 @@ namespace _1Laboratorinis
             Test_List_OP(seed);
             seed = (int)DateTime.Now.Ticks & 0x0000FFFF;
             Test_Array_Disk(seed);
-            OP_Sort_Speed_Test();
-            D_Sort_Speed_Test(seed);
+            seed = (int)DateTime.Now.Ticks & 0x0000FFFF;
+            Test_List_D(seed);
+            //OP_Sort_Speed_Test();
+            //D_Sort_Speed_Test(seed);
             
         }
 
@@ -94,9 +96,26 @@ namespace _1Laboratorinis
                 myFileArray2.QuickSort();
                 myFileArray2.Print();
             }
+            Console.WriteLine("\n------------------------------------------------------------\n");
+
+        }
+
+        public static void Test_List_D(int seed)
+        {
+            int n = 12;
+            string filename = @"mydatalist.dat";
+            MyFileList myfilelist = new MyFileList(filename, n, seed);
+            using (myfilelist.fs = new FileStream(filename, FileMode.Open, FileAccess.ReadWrite))
+            {
+                Console.WriteLine("\n Selection sort LIST \n");
+                myfilelist.Print(n);
+                Selection_Sort_List(myfilelist);
+                myfilelist.Print(n);
+            }
             Console.WriteLine();
             Console.WriteLine("____________________________________________________________");
             Console.WriteLine("____________________________________________________________");
+
         }
 
         public static void OP_Sort_Speed_Test()
@@ -204,6 +223,30 @@ namespace _1Laboratorinis
 
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine("\n Slection sort LIST \n");
+        }
+
+        public static void Selection_Sort_List(MyFileList list)
+        {
+            for (int i = 0; i < list.Length; i++)
+            {
+                int min = i;
+                int minVal = list.GetNode(i);
+                for (int j = i + 1; j < list.Length; j++)
+                {
+                    int tempVal = list.GetNode(j);
+                    if (tempVal < minVal)
+                    {
+                        min = j;
+                        minVal = tempVal;
+                    }
+                }
+                int iVal = list.GetNode(i);
+                list.Set2(minVal);
+                list.GetNode(min);
+                list.Set2(iVal);
+            }
+
+
         }
     }
 }

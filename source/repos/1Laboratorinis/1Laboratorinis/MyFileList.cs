@@ -36,7 +36,7 @@ namespace _1Laboratorinis
                     writer.Write(4);
                     for (int j = 0; j < length; j++)
                     {
-                        writer.Write(rand.Next(0, 50000));
+                        writer.Write(rand.Next(0, 999));
                         writer.Write((j + 1) * 8 + 4);
 
                         if (rand.ToString().Length > maxLength)
@@ -76,6 +76,29 @@ namespace _1Laboratorinis
             nextNode = BitConverter.ToInt32(data, 4);
             return result;
         }
+
+        public int GetNode(int index)
+        {
+            int result = Head();
+            if (index == 0)
+                return result;
+
+            for (int i = 1; i <= index; i++)
+                result = Next();
+
+            return result;
+        }
+
+        public void Set2(int value)
+        {
+            Byte[] data;
+            fs.Seek(currentNode, SeekOrigin.Begin);
+            data = BitConverter.GetBytes(value);
+            fs.Write(data, 0, 4);
+        }
+
+
+
         public Microsoft.Win32.SafeHandles.SafeFileHandle FileName { get; set; }
 
         public override void Set(int value)

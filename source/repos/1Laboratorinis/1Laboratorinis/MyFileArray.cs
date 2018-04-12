@@ -116,6 +116,7 @@ namespace _1Laboratorinis
             QuickSort(left + 1, end);
         }
 
+    
         public void Set(int index, int a)
         {
             Byte[] data = new Byte[4];
