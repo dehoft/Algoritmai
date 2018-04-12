@@ -21,7 +21,7 @@ namespace _1Laboratorinis
             seed = (int)DateTime.Now.Ticks & 0x0000FFFF;
             Test_List_D(seed);
             //OP_Sort_Speed_Test();
-            //D_Sort_Speed_Test(seed);
+            D_Sort_Speed_Test(seed);
             
         }
 
@@ -189,9 +189,11 @@ namespace _1Laboratorinis
             Console.WriteLine("\n Selection sort ARRAY: \n");
             int[] length = { 400, 800, 1600, 3200, 6400 };
             int[] length2 = { 400, 800, 1600, 3200, 6400, 12800 };
+            int[] length3 = { 100, 200, 400, 800 };
             string fileName;
             fileName = @"mydataaray.dat";
-            string fileName3 = @"mydataaray2.dat";
+            string fileName2 = @"mydataaray2.dat";
+            string filename3 = @"mydatalist.dat";
             for (int i = 0; i < length.Length; i++)
             {
                 MyFileArray n = new MyFileArray(fileName, length2[i], seed);
@@ -205,11 +207,11 @@ namespace _1Laboratorinis
                     Console.WriteLine("Amount of data {0,5} --->>> Time elapsed: {1}", length[i], e.ToString());
                 }
             }
-            Console.WriteLine("------------------------------------------------------");           
+            Console.WriteLine("------------------------------------------------------");
             Console.WriteLine("\n Quick sort ARRAY \n");
             for (int i = 0; i < length2.Length; i++)
             {
-                MyFileArray n = new MyFileArray(fileName3, length2[i], seed);
+                MyFileArray n = new MyFileArray(fileName2, length2[i], seed);
                 using (n.fs = new FileStream(fileName, FileMode.Open, FileAccess.ReadWrite))
                 {
                     Stopwatch t = new Stopwatch();
@@ -222,7 +224,20 @@ namespace _1Laboratorinis
             }
 
             Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine("\n Slection sort LIST \n");
+            Console.WriteLine("\n Selection sort LIST \n");
+            for (int i = 0; i < length2.Length; i++)
+            {
+                MyFileList n = new MyFileList(filename3, length3[i], seed);
+                using (n.fs = new FileStream(fileName, FileMode.Open, FileAccess.ReadWrite))
+                {
+                    Stopwatch t = new Stopwatch();
+                    t.Start();
+                    Selection_Sort_List(n);
+                    t.Stop();
+                    TimeSpan e = t.Elapsed;
+                    Console.WriteLine("Amount of data {0,5} --->>> Time elapsed: {1}", length3[i], e.ToString());
+                }
+            }
         }
 
         public static void Selection_Sort_List(MyFileList list)
