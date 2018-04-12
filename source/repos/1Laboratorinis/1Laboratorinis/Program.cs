@@ -189,7 +189,7 @@ namespace _1Laboratorinis
             Console.WriteLine(" Speed Test D ");
             Console.WriteLine("\n Selection sort ARRAY: \n");
             int[] length = { 400, 800, 1600, 3200, 6400 };
-            int[] length2 = { 400, 800, 1600, 3200, 6400, 12800 };
+            int[] length2 = { 400, 800, 1600, 3200, 6400 };
             int[] length3 = { 100, 200, 400};
             string fileName;
             fileName = @"mydataaray.dat";
@@ -226,7 +226,7 @@ namespace _1Laboratorinis
 
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine("\n Selection sort LIST \n");
-            for (int i = 0; i < length2.Length; i++)
+            for (int i = 0; i < length3.Length; i++)
             {
                 MyFileList n = new MyFileList(filename3, length3[i], seed);
                 using (n.fs = new FileStream(fileName, FileMode.Open, FileAccess.ReadWrite))
